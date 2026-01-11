@@ -1,0 +1,380 @@
+@import "tailwindcss";
+
+/* Performance optimizations */
+* {
+  box-sizing: border-box;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+  /* Performance improvements */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hide scrollbars for all browsers */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+html {
+  -ms-overflow-style: none !important; /* IE and Edge */
+  scrollbar-width: none !important; /* Firefox */
+}
+
+body {
+  -ms-overflow-style: none !important; /* IE and Edge */
+  scrollbar-width: none !important; /* Firefox */
+}
+
+:root {
+  --background: #fafafa;
+  --foreground: #1a1a1a;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  
+  /* Luxury Perfume Colors - French Elegance */
+  --color-primary: #1a1a1a;        /* Charcoal Black */
+  --color-secondary: #2d2d2d;       /* Dark Gray */
+  --color-accent: #d4af37;          /* Gold - Luxury */
+  --color-background: #fafafa;      /* Warm White */
+  --color-text: #2c2c2c;            /* Charcoal */
+  --color-success: #4a6741;         /* Deep Green - Premium */
+  --color-border: #e5e5e5;          /* Light Gray */
+  --color-gold: #c9a961;            /* Soft Gold */
+  --color-primary-hover: #2a2a2a;
+  --color-accent-hover: #e5c870;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  max-width: 100vw !important;
+  position: relative;
+  width: 100% !important;
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+body::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Root element */
+#__next,
+#root {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+  width: 100% !important;
+}
+
+/* Prevent horizontal scroll */
+* {
+  box-sizing: border-box;
+}
+
+/* Ensure all containers respect viewport width */
+.container,
+.container-fluid {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+/* Prevent horizontal scroll on main elements */
+main,
+section,
+div {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+/* Hide scrollbars from all elements */
+main::-webkit-scrollbar,
+section::-webkit-scrollbar,
+div::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+main,
+section,
+div,
+* {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+/* Utility class for line clamping */
+@layer utilities {
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .font-luxury {
+    font-family: 'Playfair Display', 'Cormorant Garamond', 'Libre Baskerville', serif;
+  }
+  
+  .font-elegant {
+    font-family: 'Inter', 'Roboto', sans-serif;
+  }
+}
+
+/* Swiper Navigation Buttons - Luxury Design */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #d4af37 !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  width: 32px !important;
+  height: 32px !important;
+  box-shadow: none !important;
+  transition: all 0.2s ease !important;
+  top: 50% !important;
+  margin-top: -16px !important;
+  opacity: 0.8 !important;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background: transparent !important;
+  transform: scale(1.05) !important;
+  color: #e5c870 !important;
+  opacity: 1 !important;
+}
+
+.swiper-button-next:active,
+.swiper-button-prev:active {
+  transform: scale(0.98) !important;
+}
+
+.swiper-button-next.swiper-button-disabled,
+.swiper-button-prev.swiper-button-disabled {
+  opacity: 0.35 !important;
+  cursor: not-allowed !important;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+/* Swiper Container - Allow partial slides */
+.swiper-products {
+  overflow: visible !important;
+}
+
+.swiper-products .swiper-wrapper {
+  overflow: visible !important;
+}
+
+.swiper-products .swiper-slide {
+  overflow: visible !important;
+}
+
+/* Search Results Dropdown - Ensure visibility */
+[class*="absolute top-full"] {
+  position: absolute !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  display: block !important;
+  pointer-events: auto !important;
+}
+
+/* Header - Allow search results to overflow */
+header,
+header > div,
+header > div > div,
+header > div > div > div,
+header .container,
+header .flex {
+  overflow: visible !important;
+  position: relative !important;
+}
+
+/* Search container - Ensure dropdown visibility */
+[ref] {
+  overflow: visible !important;
+  position: relative !important;
+  z-index: 1000 !important;
+}
+
+/* Search dropdown - Force visibility */
+[class*="absolute top-full"] {
+  position: absolute !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  display: block !important;
+  pointer-events: auto !important;
+  z-index: 10000 !important;
+  background-color: white !important;
+}
+
+/* Swiper Pagination - Luxury Design */
+.swiper-pagination {
+  position: relative !important;
+  margin-top: 24px !important;
+}
+
+.swiper-pagination-bullet {
+  background-color: #cbd5e1 !important;
+  opacity: 1 !important;
+  width: 10px !important;
+  height: 10px !important;
+  transition: all 0.3s ease !important;
+  margin: 0 6px !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #d4af37 !important;
+  width: 32px !important;
+  border-radius: 5px !important;
+  box-shadow: 0 2px 8px rgba(212, 175, 55, 0.4) !important;
+}
+
+/* Professional Dropdown Styling - Global */
+select {
+  background-image: none !important;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+select:focus {
+  outline: none !important;
+  border-color: #1a1a1a !important;
+  box-shadow: 0 0 0 2px rgba(26, 26, 26, 0.1) !important;
+}
+
+select:hover {
+  border-color: #9ca3af !important;
+}
+
+/* Professional Options Styling */
+select option {
+  padding: 0.625rem 1rem !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  color: #374151 !important;
+  background-color: #ffffff !important;
+  border: none !important;
+  cursor: pointer;
+  line-height: 1.5 !important;
+}
+
+select option:hover {
+  background-color: #f3f4f6 !important;
+  color: #1a1a1a !important;
+}
+
+select option:checked,
+select option[selected] {
+  background-color: #f9fafb !important;
+  color: #1a1a1a !important;
+  font-weight: 600 !important;
+}
+
+select option:disabled {
+  color: #9ca3af !important;
+  background-color: #f9fafb !important;
+  cursor: not-allowed;
+}
+
+/* Remove default arrow in Firefox */
+select::-moz-appearance {
+  appearance: none;
+  text-indent: 0.01px;
+  text-overflow: '';
+}
+
+/* Remove default arrow in Chrome/Safari */
+select::-webkit-appearance {
+  appearance: none;
+}
+
+/* For IE and Edge */
+select::-ms-expand {
+  display: none;
+}
+
+/* Better styling for optgroups */
+select optgroup {
+  font-weight: 600;
+  color: #1a1a1a;
+  padding: 0.5rem 0;
+}
+
+select optgroup option {
+  padding-right: 1.5rem;
+  font-weight: 500;
+}
+
+/* Luxury Button Styles */
+.btn-luxury {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-luxury:hover {
+  background: linear-gradient(135deg, #2a2a2a 0%, #3d3d3d 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-gold {
+  background: linear-gradient(135deg, #d4af37 0%, #c9a961 100%);
+  color: #1a1a1a;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(212, 175, 55, 0.3);
+}
+
+.btn-gold:hover {
+  background: linear-gradient(135deg, #e5c870 0%, #d4b870 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
+}
+
+/* Luxury Card Styles */
+.card-luxury {
+  background: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.card-luxury:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px);
+}
