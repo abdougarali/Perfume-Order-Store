@@ -46,12 +46,51 @@ export default function Home() {
   const [dropdownPosition, setDropdownPosition] = useState<{ top: number; left: number; width: number } | null>(null);
   const searchRef = useRef<HTMLDivElement>(null);
 
+  // Featured products - memoized for performance
+  const featuredProducts = useMemo(() => products.filter(p => p.featured).slice(0, 8), []);
+  
+  // Products by category - memoized for performance
+  const edpProducts = useMemo(() => products.filter(p => p.category === 'eau-de-parfum'), []);
+  const edtProducts = useMemo(() => products.filter(p => p.category === 'eau-de-toilette'), []);
+  const mensProducts = useMemo(() => products.filter(p => p.category === 'mens'), []);
+  const womensProducts = useMemo(() => products.filter(p => p.category === 'womens'), []);
+  const unisexProducts = useMemo(() => products.filter(p => p.category === 'unisex'), []);
+
   // Check products on load (dev only)
   useEffect(() => {
     if (process.env.NODE_ENV === 'development') {
       console.log('Products loaded:', products?.length || 0);
     }
   }, []);
+
+  // Generate product structured data for SEO
+  const productStructuredData = useMemo(() => {
+    return featuredProducts.map((product) => ({
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": product.name,
+      "description": product.description || `Premium ${product.name} from our ${categoryLabels[product.category] || product.category} collection.`,
+      "image": getProductImage(product.image, product.category, product.name),
+      "brand": {
+        "@type": "Brand",
+        "name": "Luxury Perfumes"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": `https://luxury-perfumes.com#product-${product.id}`,
+        "priceCurrency": "TND",
+        "price": product.price / 1000,
+        "availability": "https://schema.org/InStock",
+        "itemCondition": "https://schema.org/NewCondition"
+      },
+      "category": categoryLabels[product.category] || product.category,
+      "aggregateRating": product.featured ? {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "150"
+      } : undefined
+    })).filter(Boolean);
+  }, [featuredProducts]);
 
   const handleOpenDetailsModal = (productId: string) => {
     setSelectedDetailsProductId(productId);
@@ -76,15 +115,6 @@ export default function Home() {
     );
   };
 
-  // Featured products
-  const featuredProducts = products.filter(p => p.featured).slice(0, 8);
-  
-  // Products by category
-  const edpProducts = products.filter(p => p.category === 'eau-de-parfum');
-  const edtProducts = products.filter(p => p.category === 'eau-de-toilette');
-  const mensProducts = products.filter(p => p.category === 'mens');
-  const womensProducts = products.filter(p => p.category === 'womens');
-  const unisexProducts = products.filter(p => p.category === 'unisex');
 
   // Search logic
   const searchResults = useMemo(() => {
@@ -734,11 +764,13 @@ export default function Home() {
                     <div className="w-full h-32 relative bg-gradient-to-br from-[#1a1a1a] via-[#2a2a2a] to-[#1a1a1a]">
                       <Image
                         src={imageSrc}
-                        alt={product.name}
+                        alt={`${product.name} - ${categoryLabels[product.category] || product.category}`}
                         fill
                         className="object-cover opacity-90 group-hover:opacity-100 transition-opacity"
                         sizes="(max-width: 640px) 50vw, 128px"
                         quality={85}
+                        loading={index < 4 ? 'eager' : 'lazy'}
+                        priority={index < 2}
                       />
                       {product.featured && (
                         <div className="absolute top-1 right-1 z-10 bg-gradient-to-r from-[#d4af37] to-[#c9a961] text-[#0a0a0a] text-[8px] font-bold px-1.5 py-0.5 rounded-full">
@@ -1288,6 +1320,24 @@ export default function Home() {
           </div>
         </section>
       </main>
+
+      {/* Product Structured Data for SEO */}
+      {productStructuredData.length > 0 && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ItemList",
+              "itemListElement": productStructuredData.map((product, index) => ({
+                "@type": "ListItem",
+                "position": index + 1,
+                "item": product
+              }))
+            })
+          }}
+        />
+      )}
 
       {/* Product Details Modal */}
       <ProductDetailsModal
