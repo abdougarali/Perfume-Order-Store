@@ -670,7 +670,7 @@ export default function Home() {
                 const featuredSection = document.getElementById('discover');
                 featuredSection?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="group relative inline-flex items-center gap-3 text-white font-elegant text-sm sm:text-base uppercase tracking-[0.2em] hover:text-[#d4af37] transition-all duration-500 animate-fade-in-delay-3"
+              className="group relative inline-flex items-center gap-3 text-white font-elegant text-sm sm:text-base uppercase tracking-[0.2em] hover:text-[#d4af37] transition-all duration-500 animate-fade-in-delay-3 mb-0 sm:mb-0"
               aria-label="Discover fragrances"
             >
               <span>Explore Collection</span>
@@ -696,6 +696,11 @@ export default function Home() {
           <div className="w-px h-12 bg-gradient-to-b from-[#d4af37] to-transparent"></div>
         </div>
       </section>
+
+      {/* Decorative Golden Horizontal Line - Mobile Only (Between sections) */}
+      <div className="sm:hidden flex justify-center items-center py-8">
+        <div className="w-24 h-px bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-60"></div>
+      </div>
 
       {/* Discover Section */}
       <main id="discover" className="bg-[#0a0a0a]">
@@ -754,7 +759,7 @@ export default function Home() {
             <Swiper
               modules={[Navigation, Pagination]}
               spaceBetween={24}
-              slidesPerView={1.1}
+              slidesPerView={1.3}
               centeredSlides={true}
               slidesPerGroup={1}
               navigation
@@ -819,7 +824,7 @@ export default function Home() {
             <Swiper
               modules={[Navigation, Pagination]}
               spaceBetween={24}
-              slidesPerView={1.5}
+              slidesPerView={1.3}
               centeredSlides={true}
               slidesPerGroup={1}
               initialSlide={0}
@@ -886,7 +891,7 @@ export default function Home() {
             <Swiper
               modules={[Navigation, Pagination]}
               spaceBetween={24}
-              slidesPerView={1.1}
+              slidesPerView={1.3}
               centeredSlides={true}
               slidesPerGroup={1}
               navigation
@@ -952,7 +957,7 @@ export default function Home() {
             <Swiper
               modules={[Navigation, Pagination]}
               spaceBetween={24}
-              slidesPerView={1.1}
+              slidesPerView={1.3}
               centeredSlides={true}
               slidesPerGroup={1}
               navigation
