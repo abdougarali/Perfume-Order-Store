@@ -21,6 +21,9 @@ const productNameTranslations: Record<string, string> = {
   "Citrus Splash Eau de Toilette": "دفقة الحمضيات",
   "Pure Linen Eau de Toilette": "كتان نقي",
   "Misty Garden Eau de Toilette": "حديقة ضبابية",
+  "Sunny Days Eau de Toilette": "أيام مشمسة",
+  "Cool Waters Eau de Toilette": "مياه باردة",
+  "Tropical Breeze Eau de Toilette": "نسيم استوائي",
   
   // Men's Collection
   "Masculine Essence": "جوهر الرجولة",

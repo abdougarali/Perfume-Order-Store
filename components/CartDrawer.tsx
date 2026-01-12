@@ -54,11 +54,15 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
   }, [isOpen, onClose]);
 
   const formatPrice = (price: number) => {
-    return new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
+    const amount = (price / 1000).toLocaleString("en-US", {
       minimumFractionDigits: 0,
-    }).format(price / 1000);
+      maximumFractionDigits: 0,
+    });
+    return (
+      <>
+        {amount} <span className="font-luxury font-bold">TND</span>
+      </>
+    );
   };
 
   const handleImageError = (itemId: string) => {
@@ -292,11 +296,11 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                           {/* Price */}
                           <div className="mb-3">
                             <div className="flex items-baseline gap-2">
-                              <p className="text-base sm:text-lg font-bold text-[#d4af37] font-luxury">
+                              <p className="text-base sm:text-lg font-bold text-[#d4af37] font-luxury" dir="ltr">
                                 {formatPrice(item.price * item.quantity)}
                               </p>
                               {item.quantity > 1 && (
-                                <p className="text-xs text-white/40 font-elegant">
+                                <p className="text-xs text-white/40 font-elegant" dir="ltr">
                                   ({formatPrice(item.price)} × {item.quantity})
                                 </p>
                               )}
@@ -391,7 +395,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
             {/* Total - Fixed at top */}
             <div className="flex items-center justify-between px-4 py-2.5 border-b border-white/10 flex-shrink-0">
               <span className="text-sm font-semibold text-white/80 font-elegant uppercase tracking-wide">Total:</span>
-              <span className="text-xl font-bold text-[#d4af37] font-luxury">{totalFormatted}</span>
+              <span className="text-xl font-bold text-[#d4af37] font-luxury" dir="ltr">{totalFormatted}</span>
             </div>
 
             {/* Order Form - Scrollable & Compact */}

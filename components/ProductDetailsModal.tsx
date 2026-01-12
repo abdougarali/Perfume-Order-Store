@@ -135,11 +135,15 @@ export default function ProductDetailsModal({ isOpen, onClose, productId }: Prod
   if (!isOpen || !productId || !product) return null;
 
   const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
+    const amount = (price / 1000).toLocaleString('en-US', {
       minimumFractionDigits: 0,
-    }).format(price / 1000);
+      maximumFractionDigits: 0,
+    });
+    return (
+      <>
+        {amount} <span className="font-luxury font-bold">TND</span>
+      </>
+    );
   };
 
   const productDescription = product.description || `Premium ${product.name} from our ${categoryLabels[product.category] || product.category} collection.`;
@@ -375,7 +379,7 @@ export default function ProductDetailsModal({ isOpen, onClose, productId }: Prod
 
                 {/* Price - Updates based on selected volume */}
                 <div className="pb-2 border-b border-white/10">
-                  <p className="text-xl sm:text-2xl font-bold text-[#d4af37] font-luxury">
+                  <p className="text-xl sm:text-2xl font-bold text-[#d4af37] font-luxury" dir="ltr">
                     {formatPrice(currentPrice)}
                   </p>
                 </div>

@@ -63,19 +63,17 @@ export default function Home() {
     setSelectedDetailsProductId(null);
   };
 
-  const priceFormatter = useMemo(
-    () =>
-      new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-        minimumFractionDigits: 0,
-      }),
-    []
-  );
-
   const formatPrice = (price?: number) => {
     if (!price) return null;
-    return priceFormatter.format(price / 1000);
+    const amount = (price / 1000).toLocaleString("en-US", {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    });
+    return (
+      <>
+        {amount} <span className="font-luxury font-bold">TND</span>
+      </>
+    );
   };
 
   // Featured products
@@ -417,7 +415,7 @@ export default function Home() {
                                     {categoryLabels[product.category]}
                                   </p>
                                   <div className="mt-1">
-                                    <span className="text-sm font-bold text-[#d4af37]">
+                                    <span className="text-sm font-bold text-[#d4af37]" dir="ltr">
                                       {formatPrice(product.price)}
                                     </span>
                                   </div>
@@ -542,7 +540,7 @@ export default function Home() {
                             </p>
                           </div>
                           <div className="flex-shrink-0 text-right">
-                            <span className="text-base font-bold text-[#d4af37]">
+                            <span className="text-base font-bold text-[#d4af37]" dir="ltr">
                               {formatPrice(product.price)}
                             </span>
                           </div>
@@ -706,22 +704,68 @@ export default function Home() {
       <main id="discover" className="bg-[#0a0a0a]">
         {/* Bestsellers Section */}
         <section ref={sectionRefs.bestsellers} className={`container mx-auto px-4 sm:px-6 pt-16 sm:pt-24 pb-16 sm:pb-20 transition-all duration-1000 ${sectionVisible.bestsellers ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white font-luxury mb-3 leading-tight tracking-tight">
+          <div className="text-center mb-6 sm:mb-16">
+            <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold text-white font-luxury mb-2 sm:mb-3 leading-tight tracking-tight">
               Timeless Classics
             </h2>
-            <p className="text-2xl sm:text-3xl md:text-4xl font-arabic-calligraphy text-[#d4af37] mb-3 font-bold leading-relaxed" dir="rtl">
+            <p className="text-xl sm:text-3xl md:text-4xl font-arabic-calligraphy text-[#d4af37] mb-2 sm:mb-3 font-bold leading-relaxed" dir="rtl">
               {arabicTranslations.sections["Timeless Classics"]}
             </p>
-            <p className="text-lg sm:text-xl md:text-2xl font-arabic-calligraphy text-white/90 mb-2 max-w-3xl mx-auto leading-relaxed font-semibold" dir="rtl">
+            <p className="hidden sm:block text-lg sm:text-xl md:text-2xl font-arabic-calligraphy text-white/90 mb-2 max-w-3xl mx-auto leading-relaxed font-semibold" dir="rtl">
               {arabicTranslations.descriptions["Our most beloved fragrances, crafted for those who appreciate enduring elegance"]}
             </p>
-            <p className="text-white/60 text-sm sm:text-base font-elegant max-w-2xl mx-auto italic">
+            <p className="hidden sm:block text-white/60 text-sm sm:text-base font-elegant max-w-2xl mx-auto italic">
               Our most beloved fragrances, crafted for those who appreciate enduring elegance
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
+          {/* Mobile: Micro Cards - 2 columns grid */}
+          <div className="sm:hidden">
+            <div className="grid grid-cols-2 gap-3">
+              {featuredProducts.map((product, index) => {
+                const imageSrc = getProductImage(product.image, product.category, product.name);
+                return (
+                  <div
+                    key={product.id}
+                    onClick={() => handleOpenDetailsModal(product.id)}
+                    className="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 overflow-hidden hover:border-[#d4af37]/50 transition-all duration-300 cursor-pointer group"
+                  >
+                    {/* Micro Image */}
+                    <div className="w-full h-32 relative bg-gradient-to-br from-[#1a1a1a] via-[#2a2a2a] to-[#1a1a1a]">
+                      <Image
+                        src={imageSrc}
+                        alt={product.name}
+                        fill
+                        className="object-cover opacity-90 group-hover:opacity-100 transition-opacity"
+                        sizes="(max-width: 640px) 50vw, 128px"
+                        quality={85}
+                      />
+                      {product.featured && (
+                        <div className="absolute top-1 right-1 z-10 bg-gradient-to-r from-[#d4af37] to-[#c9a961] text-[#0a0a0a] text-[8px] font-bold px-1.5 py-0.5 rounded-full">
+                          ⭐
+                        </div>
+                      )}
+                    </div>
+                    {/* Micro Info */}
+                    <div className="p-2">
+                      <h3 className="text-[10px] font-bold text-white mb-0.5 line-clamp-1 group-hover:text-[#d4af37] transition-colors">
+                        {product.name.split(' ').slice(0, 2).join(' ')}
+                      </h3>
+                      <p className="text-[9px] text-white/50 mb-1 uppercase truncate">
+                        {categoryLabels[product.category]?.split(' ')[0] || ''}
+                      </p>
+                      <p className="text-xs font-bold text-[#d4af37]" dir="ltr">
+                        {formatPrice(product.price)}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Desktop: Regular Cards Grid */}
+          <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
             {featuredProducts.map((product, index) => (
               <ProductCard
                 key={product.id}

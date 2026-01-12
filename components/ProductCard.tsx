@@ -39,11 +39,15 @@ export default function ProductCard({ product, index = 0, onCardClick }: Product
   }, [primaryImage]);
 
   const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
+    const amount = (price / 1000).toLocaleString('en-US', {
       minimumFractionDigits: 0,
-    }).format(price / 1000);
+      maximumFractionDigits: 0,
+    });
+    return (
+      <>
+        <span>{amount}</span> <span>TND</span>
+      </>
+    );
   };
 
   const handleImageError = () => {
@@ -221,7 +225,7 @@ export default function ProductCard({ product, index = 0, onCardClick }: Product
 
         {/* Price */}
         <div className="mb-5">
-          <p className="text-xl sm:text-2xl font-bold text-[#d4af37] font-luxury">
+          <p className="text-xl sm:text-2xl font-bold text-[#d4af37] font-luxury" dir="ltr">
             {formatPrice(product.price)}
           </p>
         </div>
