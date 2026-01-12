@@ -18,7 +18,7 @@ export interface Product {
 /**
  * Product list
  * - Eau de Parfum: 8 products
- * - Eau de Toilette: 6 products
+ * - Eau de Toilette: 9 products
  * - Men's Collection: 8 products
  * - Women's Collection: 8 products
  * - Unisex: 6 products
@@ -114,7 +114,51 @@ export const products: Product[] = [
     featured: true
   },
 
-  // Eau de Toilette (EDT) - 6 products
+  // Eau de Toilette (EDT) - 9 products
+  {
+    id: "edt-6",
+    name: "Misty Garden Eau de Toilette",
+    category: "eau-de-toilette",
+    description: "Delicate and ethereal, with dewy florals",
+    fragranceNotes: "Top: Dewy Greens, Violet | Middle: Peony, Rose | Base: Soft Woods, White Musk",
+    price: 87000,
+    image: "/images/perfumes/eau-de-toilette/EDT(6).jpg",
+    volumes: ["50ml", "100ml"],
+    featured: false
+  },
+  {
+    id: "edt-7",
+    name: "Sunny Days Eau de Toilette",
+    category: "eau-de-toilette",
+    description: "Bright and cheerful, perfect for sunny moments",
+    fragranceNotes: "Top: Mandarin, Orange Blossom | Middle: Jasmine, Freesia | Base: White Musk, Amber",
+    price: 89000,
+    image: "/images/perfumes/eau-de-toilette/EDT(7).jpg",
+    volumes: ["50ml", "100ml", "200ml"],
+    featured: false
+  },
+  {
+    id: "edt-8",
+    name: "Cool Waters Eau de Toilette",
+    category: "eau-de-toilette",
+    description: "Refreshing aquatic notes for a crisp, clean feeling",
+    fragranceNotes: "Top: Water Notes, Mint | Middle: Lotus, Water Lily | Base: Musk, Sandalwood",
+    price: 91000,
+    image: "/images/perfumes/eau-de-toilette/EDT(8).jpg",
+    volumes: ["50ml", "100ml"],
+    featured: true
+  },
+  {
+    id: "edt-9",
+    name: "Tropical Breeze Eau de Toilette",
+    category: "eau-de-toilette",
+    description: "Exotic and vibrant, with tropical fruit and floral notes",
+    fragranceNotes: "Top: Pineapple, Coconut | Middle: Frangipani, Ylang-Ylang | Base: Vanilla, White Woods",
+    price: 93000,
+    image: "/images/perfumes/eau-de-toilette/EDT(9).jpg",
+    volumes: ["50ml", "100ml", "200ml"],
+    featured: false
+  },
   {
     id: "edt-1",
     name: "Fresh Morning Eau de Toilette",
@@ -169,17 +213,6 @@ export const products: Product[] = [
     image: "/images/perfumes/eau-de-toilette/EDT(5).jpg",
     volumes: ["50ml", "100ml", "200ml"],
     featured: true
-  },
-  {
-    id: "edt-6",
-    name: "Misty Garden Eau de Toilette",
-    category: "eau-de-toilette",
-    description: "Delicate and ethereal, with dewy florals",
-    fragranceNotes: "Top: Dewy Greens, Violet | Middle: Peony, Rose | Base: Soft Woods, White Musk",
-    price: 87000,
-    image: "/images/perfumes/eau-de-toilette/EDT(6).jpg",
-    volumes: ["50ml", "100ml"],
-    featured: false
   },
 
   // Men's Collection - 8 products

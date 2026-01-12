@@ -334,7 +334,7 @@ export default function Home() {
                       }}
                       placeholder={arabicTranslations.ui["Search for perfume or category..."]}
                       dir="rtl"
-                      className="w-64 lg:w-80 xl:w-96 pl-10 pr-4 py-2 text-sm bg-white/10 backdrop-blur-sm border border-white/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d4af37]/50 focus:border-[#d4af37] transition-all duration-300 placeholder:text-white/50 text-white font-elegant"
+                      className="w-64 lg:w-80 xl:w-96 pl-10 pr-4 py-2.5 md:py-3 text-sm bg-white/10 backdrop-blur-sm border border-white/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d4af37]/50 focus:border-[#d4af37] transition-all duration-300 placeholder:text-white/50 text-white font-elegant"
                     />
                     <svg
                       className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-white/60 pointer-events-none"
@@ -441,13 +441,13 @@ export default function Home() {
               {/* Cart Icon - Elegant */}
               <button
                 onClick={() => setIsCartDrawerOpen(true)}
-                className={`relative p-2.5 sm:p-3 rounded-full transition-all duration-300 hover:bg-white/10 hover:scale-110 active:scale-95 flex-shrink-0 group ${
+                className={`relative p-2.5 sm:p-3 md:p-3.5 rounded-full transition-all duration-300 hover:bg-white/10 hover:scale-110 active:scale-95 flex-shrink-0 group ${
                   isScrolled ? 'text-white' : 'text-white/90'
                 }`}
                 aria-label={`Open cart${getTotalItems() > 0 ? ` (${getTotalItems()} items)` : ''}`}
               >
                 <svg
-                  className="w-6 h-6 sm:w-7 sm:h-7"
+                  className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8"
                   fill="none"
                   stroke="currentColor"
                   strokeWidth={1.5}
@@ -485,10 +485,10 @@ export default function Home() {
                   autoFocus
                   placeholder={arabicTranslations.ui["Search for perfume or category..."]}
                   dir="rtl"
-                  className="w-full px-4 py-3 pl-12 text-base bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d4af37]/50 focus:border-[#d4af37] transition-all duration-200 placeholder:text-white/50 text-white font-elegant"
+                  className="w-full px-4 py-3 pr-12 text-base bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d4af37]/50 focus:border-[#d4af37] transition-all duration-200 placeholder:text-white/50 text-white font-elegant"
                 />
                 <svg
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-white/60"
+                  className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-white/60"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -630,7 +630,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
         
         {/* Hero Content */}
-        <div className="relative h-full flex items-center justify-center text-center px-4">
+        <div className="relative h-full flex items-start sm:items-center justify-center text-center px-4 pt-16 sm:pt-0">
           <div className="max-w-5xl mx-auto">
             {/* Arabic Primary Heading - Hero */}
             <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-arabic-calligraphy font-bold text-[#d4af37] mb-3 leading-[1.2] tracking-tight animate-fade-in" dir="rtl">
@@ -819,9 +819,10 @@ export default function Home() {
             <Swiper
               modules={[Navigation, Pagination]}
               spaceBetween={24}
-              slidesPerView={1.1}
+              slidesPerView={1.5}
               centeredSlides={true}
               slidesPerGroup={1}
+              initialSlide={0}
               navigation
               pagination={{ 
                 clickable: true,
@@ -1021,8 +1022,8 @@ export default function Home() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
                 </svg>
               </div>
-              <div className="md:hidden flex justify-center my-2">
-                <svg className="w-8 h-8 text-[#d4af37] rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="md:hidden flex justify-center items-center w-full my-2">
+                <svg className="w-8 h-8 text-[#d4af37] -rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
                 </svg>
               </div>
@@ -1045,8 +1046,8 @@ export default function Home() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
                 </svg>
               </div>
-              <div className="md:hidden flex justify-center my-2">
-                <svg className="w-8 h-8 text-[#d4af37] rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="md:hidden flex justify-center items-center w-full my-2">
+                <svg className="w-8 h-8 text-[#d4af37] -rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
                 </svg>
               </div>
@@ -1069,8 +1070,8 @@ export default function Home() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
                 </svg>
               </div>
-              <div className="md:hidden flex justify-center my-2">
-                <svg className="w-8 h-8 text-[#d4af37] rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="md:hidden flex justify-center items-center w-full my-2">
+                <svg className="w-8 h-8 text-[#d4af37] -rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
                 </svg>
               </div>

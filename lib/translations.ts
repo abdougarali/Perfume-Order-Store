@@ -8,7 +8,7 @@ export const arabicTranslations = {
   sections: {
     "Timeless Classics": "الكلاسيكيات الخالدة",
     "Evening Elegance": "أناقة المساء",
-    "Morning Fresh": "نضارة الصباح",
+    "Morning Fresh": "صباح منعش",
     "Mysterious Nights": "ليالٍ غامضة",
     "Feminine Grace": "جمال الأنوثة",
     "Discover": "اكتشف",

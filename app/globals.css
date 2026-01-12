@@ -249,12 +249,6 @@ div,
   overflow: visible !important;
 }
 
-/* Mobile: Show one full card + peek of next card */
-@media (max-width: 639px) {
-  .swiper-products .swiper-wrapper {
-    align-items: flex-start !important;
-  }
-}
 
 /* Search Results Dropdown - Ensure visibility */
 [class*="absolute top-full"] {
